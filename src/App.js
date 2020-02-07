@@ -2,26 +2,19 @@ import React, { useState } from 'react';
 import logo from './logo.svg';
 import './main.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const PlayNumber = (props) => (
+  <button className="number" onClick = {() => console.log('Num', props.number)}>
+    {props.number}
+  </button>
+)
+
+const StarsDisplay = (props) =>(
+  <> {/* empty JSX tag which can also be <React.Fragment></React.Fragment>*/}
+    {utils.range(1, props.count).map(starId => 
+      <div key={starId} className="star" />
+    )}
+  </>
+)
 
 // v1 STAR MATCH - Starting Template
 
@@ -34,12 +27,12 @@ const StarMatch = () => {
       </div>
       <div className="body">
         <div className="left">
-          {utils.range(1, stars).map(starId => 
-            <div key={starId} className="star" />)}
+          <StarsDisplay count={stars} />
         </div>
         <div className="right">
           {utils.range(1, 9).map(number => 
-            <button key={number} className="number">{number}</button>)}
+            <PlayNumber key={number}  number={number} />
+          )}
         </div>
       </div>
       <div className="timer">Time Remaining: 10</div>
